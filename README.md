@@ -4,10 +4,10 @@ A console-based Python application designed to facilitate the reporting and reco
 The application functions as a digital ledger that persists data locally. It allows users to register accounts, report items they have found and attempt to claim times they have lost. The core feature  of this system is its ownership verification algorithm, which compares a hidden distinction(recorded by the finder) against a description provided by the claimant provided by the claimant to prevent fraudulent claims.
 # Key Features
 - User Authentication: Secure registration and login functionality that validates credentials against a stored user database.
-- Persistent Storage: Automatically initializes and maintains JSON databases(users.json and items.json) to store records between sesssions.
+- Persistent Storage: Automatically initializes and maintains JSON databases(users.json and items.json) to store records between sessions.
 - Item Reporting: Users can log found items with details including name, category, location and critical "distinction" field used for future verification.
-- Smart Claim Verification: The system utilizes difflib.SequenceMatcher to perform fuzzy string matching. It calculates a similarity ratio betwen the claimant's proof and the finder's recorded distinction. Verification succeeds if the similarity ratio exceeds 0.3 or if a substrting match if found.
-- Dyanmic Status Updates: Items are tracked with statuses("open" or "claimed"). Once successfully claimed, the system reveals the finder's contanct information(registration number) to the owner.
+- Smart Claim Verification: The system utilizes difflib.SequenceMatcher to perform fuzzy string matching. It calculates a similarity ratio between the claimant's proof and the finder's recorded distinction. Verification succeeds if the similarity ratio exceeds 0.3 or if a substring match if found.
+- Dynamic Status Updates: Items are tracked with statuses("open" or "claimed"). Once successfully claimed, the system reveals the finder's contact information(registration number) to the owner.
 # Technical Structure
 The project is modularized into five distinct scripts:
 1. 'main.py': The entry point of the application. It handles the initialization of database files if they do not exist and manages the primary navigation loop between the Guest Menu and the User dashboard.
@@ -24,7 +24,7 @@ The project is modularized into five distinct scripts:
 2. Execute the main script
    'python main.py'
 # Workflow
-1. Register: Creat a new account with your registration number, name and password.
+1. Register: Create a new account with your registration number, name and password.
 2. Report an item: If you find an item, log in and select "Report Item". You must provide a 'distinction'-- aspecific detail(eg. "scratch on the screen")
 3. Claim an Item:
    - View the list of "Open" items
@@ -32,7 +32,7 @@ The project is modularized into five distinct scripts:
    - When prompted for "distinctions", describe the item.
    - If your description matches the finder's hidden note(via the similarity algorithm), ownership is verified.
 # Verification Logic Explaination
-To prevent theft, the system fdoes not simplyu give the item to anyone who asks. WHen a user attempts to claim an item:
+To prevent theft, the system does not simply give the item to anyone who asks. When a user attempts to claim an item:
    1. The system retrieves the hidden distinction string recorded by the finder
    2. The claimant inputs their own description (proof).
    3. The 'SequenceMatcher' calculates how similar these two strings are.
